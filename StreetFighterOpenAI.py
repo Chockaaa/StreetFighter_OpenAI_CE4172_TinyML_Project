@@ -11,7 +11,7 @@ obs = env.reset()
 
 #https://github.com/Camille-Gouneau/Ryuforcement
 def keyboard_controller():
-    flag = False
+    comboSequence_Enabled = False
     if keyboard.is_pressed('left'):
         action = [0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0]
     elif keyboard.is_pressed('right'):
@@ -29,7 +29,8 @@ def keyboard_controller():
     elif keyboard.is_pressed('e'):
         action = [0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1]
     elif keyboard.is_pressed('space'):
-        action = [[0, 1, 0, 1, 1, 0, 1, 1, 0, 0, 1, 0], 
+        action = [
+                  [0, 1, 0, 1, 1, 0, 1, 1, 0, 0, 1, 0], 
                   [0, 1, 1, 1, 1, 1, 0, 0, 0, 1, 1, 1],
                   [0, 0, 0, 1, 0, 1, 1, 1, 0, 1, 0, 1], 
                   [0, 1, 0, 0, 1, 1, 1, 0, 0, 0, 0, 1], 
@@ -79,46 +80,41 @@ def keyboard_controller():
                   [1, 1, 0, 1, 0, 1, 1, 1, 0, 0, 1, 0],
                   [0, 1, 1, 0, 0, 1, 0, 1, 1, 1, 1, 1],
                   [0, 1, 1, 0, 0, 1, 0, 0, 1, 1, 1, 0]]
-        flag = True
+        comboSequence_Enabled = True
     else:
         action = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
 
-    return action,flag
+    return action,comboSequence_Enabled
 
 
-bank = []
+#bank = []
 done = False
 for game in range(1):
-    count = 0
     while not done:
         if done:
             obs = env.reset()
-            
-        
         #action = env.action_space.sample()
-        #flag = False
-        action,flag = keyboard_controller()
+        #comboSequence_Enabled = False
+        action,comboSequence_Enabled = keyboard_controller()
 
-        if flag == True:
+        if comboSequence_Enabled == True:
             for i in range(len(action)):
                 obs, reward, done, info = env.step(action[i])
-
-
-                # Render the game
                 env.render()
                 time.sleep(0.01)
 
         else:
             obs, reward, done, info = env.step(action)
-            bank.append(action)
-            if(reward>0):
-                print("Reward: ",reward, "Action: ", action)
-                print(bank[-70:-20])
-                print()
-
-            # Render the game
             env.render()
             time.sleep(0.01)
+
+            #bank.append(action)
+            # if(reward>0):
+            #     print("Reward: ",reward, "Action: ", action)
+            #     print(bank[-70:-20])
+            #     print()
+
+
 
         
             
