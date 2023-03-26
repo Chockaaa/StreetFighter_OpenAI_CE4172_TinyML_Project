@@ -148,8 +148,8 @@ for game in range(1):
     while not done:
         if done:
             obs = env.reset()
-        action,comboSequence_Enabled = env.action_space.sample(),False
-        #action,comboSequence_Enabled = keyboard_controller()
+        #action,comboSequence_Enabled = env.action_space.sample(),False
+        action,comboSequence_Enabled = keyboard_controller()
 
         if comboSequence_Enabled == True:
             for i in range(len(action)):
