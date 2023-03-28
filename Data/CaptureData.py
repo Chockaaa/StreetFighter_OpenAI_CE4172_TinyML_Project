@@ -1,7 +1,7 @@
 import serial
 
 ser = serial.Serial('COM4', 9600) # replace 'COM3' with the name of your serial port
-dataFile = open('shoryuken_0.csv', 'w+')
+dataFile = open('normal_0.csv', 'w+')
 
 dataFile.write('aX,aY,aZ,gX,gY,gZ\n')
 while True:
