@@ -32,8 +32,8 @@ def keyboard_controller():
         action = [0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1]
     elif keyboard.is_pressed('w'): #highkick
         action = [0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
-    # elif keyboard.is_pressed('q'): #crouchslide
-    #     action = [0, 1, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0]        
+    elif keyboard.is_pressed('q'): #crouchslide
+        action = [0, 1, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0]        
     elif keyboard.is_pressed('space'): #hadokoen
         action = [
                 [0, 1, 0, 1, 1, 0, 1, 1, 0, 0, 1, 0], 
