@@ -33,7 +33,8 @@ for game in range(1):
             for i in range(len(action)):
                 obs, reward, done, info = env.step(action[i])
                 env.render()
-                time.sleep(0.015)
+                time.sleep(0.01)
+            
 
         else:
             obs, reward, done, info = env.step(action)
