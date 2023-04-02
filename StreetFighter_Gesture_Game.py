@@ -23,12 +23,12 @@ def render_env():
             for i in range(len(action)):
                 obs, reward, done, info = env.step(action[i])
                 env.render()
-                time.sleep(0.02)
+                time.sleep(0.01)
 
         else:
             obs, reward, done, info = env.step(action)
             env.render()
-            time.sleep(0.02)
+            time.sleep(0.01)
 
 def get_gesture_data():
     global max_gesture_key
@@ -37,6 +37,7 @@ def get_gesture_data():
             gesture_data = ser.readline().decode('utf-8').strip()
             gesture_data_json_object = json.loads(gesture_data)
             max_gesture_key = max(gesture_data_json_object, key=gesture_data_json_object.get)
+            print(max_gesture_key)
 
 render_thread = threading.Thread(target=render_env)
 gesture_thread = threading.Thread(target=get_gesture_data)
