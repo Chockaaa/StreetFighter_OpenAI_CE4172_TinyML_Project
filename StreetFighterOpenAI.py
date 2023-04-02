@@ -157,11 +157,11 @@ for game in range(1):
             env.render()
             time.sleep(0.01)
 
-            bank.append(action)
-            if(reward>0):
-                print("Reward: ",reward, "Action: ", action)
-                print(bank[-50:])
-                print()
+            # bank.append(action)
+            # if(reward>0):
+            #     print("Reward: ",reward, "Action: ", action)
+            #     print(bank[-50:])
+            #     print()
 
 
 
