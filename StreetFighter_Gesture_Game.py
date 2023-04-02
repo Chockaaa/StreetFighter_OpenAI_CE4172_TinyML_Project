@@ -37,7 +37,7 @@ def get_gesture_data():
             gesture_data = ser.readline().decode('utf-8').strip()
             gesture_data_json_object = json.loads(gesture_data)
             max_gesture_key = max(gesture_data_json_object, key=gesture_data_json_object.get)
-            print(max_gesture_key)
+            # print(max_gesture_key)
 
 render_thread = threading.Thread(target=render_env)
 gesture_thread = threading.Thread(target=get_gesture_data)

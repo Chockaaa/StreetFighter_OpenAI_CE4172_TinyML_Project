@@ -8,7 +8,7 @@ from StreetFighterkeyboardmoves import keyboard_controller
 
 ser = serial.Serial('COM4', 9600)
 
-env = retro.make(game='StreetFighterIISpecialChampionEdition-Genesis')
+env = retro.make(game='StreetFighterIISpecialChampionEdition-Genesis',state='Champion.Level1.RyuVsGuile')
 obs = env.reset()
 
 
@@ -33,12 +33,12 @@ for game in range(1):
             for i in range(len(action)):
                 obs, reward, done, info = env.step(action[i])
                 env.render()
-                time.sleep(0.01)
+                time.sleep(0.015)
 
         else:
             obs, reward, done, info = env.step(action)
             env.render()
-            time.sleep(0.01)
+            time.sleep(0.015)
 
             # bank.append(action)
             # if(reward>0):
