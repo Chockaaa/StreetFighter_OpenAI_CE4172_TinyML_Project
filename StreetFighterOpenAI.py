@@ -8,7 +8,7 @@ from StreetFighterkeyboardmoves import keyboard_controller
 
 ser = serial.Serial('COM4', 9600)
 
-env = retro.make(game='StreetFighterIISpecialChampionEdition-Genesis', scenario='scenario.easy')
+env = retro.make(game='StreetFighterIISpecialChampionEdition-Genesis')
 obs = env.reset()
 
 
@@ -16,7 +16,6 @@ max_gesture_key = "normal"
 bank = []
 done = False
 for game in range(1):
-    time.sleep(3)
     while not done:
         if ser.in_waiting > 0:
             gesture_data = ser.readline().decode('utf-8').strip()
