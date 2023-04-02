@@ -3,24 +3,32 @@ import time
 import serial
 import json
 from StreetFighterkeyboardmoves import keyboard_controller
-
-import serial, json, time
-retro.data.list_games()
+#retro.data.list_games()
 
 
-env = retro.make(game='StreetFighterIISpecialChampionEdition-Genesis')
+ser = serial.Serial('COM4', 9600)
+
+env = retro.make(game='StreetFighterIISpecialChampionEdition-Genesis', scenario='scenario.easy')
 obs = env.reset()
 
 
-
+max_gesture_key = "normal"
 bank = []
 done = False
 for game in range(1):
+    time.sleep(3)
     while not done:
+        if ser.in_waiting > 0:
+            gesture_data = ser.readline().decode('utf-8').strip()
+            gesture_data_json_object = json.loads(gesture_data)
+            max_gesture_key = max(gesture_data_json_object, key=gesture_data_json_object.get)
+            print(gesture_data_json_object)
+            print(max_gesture_key)
+        
         if done:
             obs = env.reset()
         #action,comboSequence_Enabled = env.action_space.sample(),False
-        action,comboSequence_Enabled = keyboard_controller()
+        action,comboSequence_Enabled = keyboard_controller(max_gesture_key)
 
         if comboSequence_Enabled == True:
             for i in range(len(action)):
@@ -39,8 +47,5 @@ for game in range(1):
             #     print(bank[-50:])
             #     print()
 
-
-
-        
-            
+        max_gesture_key = "normal"
 env.close()
