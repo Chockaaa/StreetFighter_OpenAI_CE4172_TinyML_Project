@@ -1,6 +1,6 @@
 #import script_writeToFirebase, serial, json, time
 import serial, json, time
-f#rom sendToTelegram import sendMsg
+#from sendToTelegram import sendMsg
 
 # dbConnection = script_writeToFirebase.DB_connection()
 ser = serial.Serial('COM4', 9600) # replace 'COM3' with the name of your serial port

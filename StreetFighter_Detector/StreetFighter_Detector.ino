@@ -33,7 +33,7 @@
 
 // BLEByteCharacteristic switchCharacteristic("2A57", BLERead);
 
-const float accelerationThreshold = 2;  // threshold of significant in G's
+const float accelerationThreshold = 2.5;  // threshold of significant in G's
 const int numSamples = 119;
 
 int samplesRead = numSamples;
@@ -53,18 +53,15 @@ TfLiteTensor* tflOutputTensor = nullptr;
 
 // Create a static memory buffer for TFLM, the size may need to
 // be adjusted based on the model you are using
-constexpr int tensorArenaSize = 6 * 1024;
+constexpr int tensorArenaSize = 16 * 1024;
 byte tensorArena[tensorArenaSize] __attribute__((aligned(16)));
 
 // array to map gesture index to a name
 const char* GESTURES[] = {
-  "fall",
-  "normal"
+  "left","right","jump","crouch","hardpunch","crouchpunch","highkick","backkick","uppercut","tatsumaki","hadoken","normal"
 };
 
 #define NUM_GESTURES (sizeof(GESTURES) / sizeof(GESTURES[0]))
-
-String GestureFlag = "punch";
 
 void setup() {
   Serial.begin(9600);
