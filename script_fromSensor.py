@@ -10,7 +10,7 @@ while True:
         gesture_data = ser.readline().decode('utf-8').strip()
         gesture_data_json_object = json.loads(gesture_data)
         max_gesture_key = max(gesture_data_json_object, key=gesture_data_json_object.get)
-        print(gesture_data_json_object)
+        #print(gesture_data_json_object)
         print(max_gesture_key)
 
 
